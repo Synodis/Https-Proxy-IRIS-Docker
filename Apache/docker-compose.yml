@@ -16,7 +16,7 @@ services:
     - ./httpd-csp.conf:/etc/apache2/conf/extra/httpd-csp.conf
 
   iris:
-    image: intersystemsdc/iris-community:latest
+    image: crsyndevopsintersystems.azurecr.io/intersystems/irishealth-community:2022.2.0.368.0
     hostname: iris
     command: 
       - --check-caps false
@@ -24,6 +24,6 @@ services:
       - iris session iris -U%SYS '##class(Security.Users).UnExpireUserPasswords("*")'
 
     volumes:
-      - ./data/dur:/dur
+      - /data/dur:/dur
     environment:
       - ISC_DATA_DIRECTORY=/dur/iconfig
